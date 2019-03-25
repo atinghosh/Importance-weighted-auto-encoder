@@ -50,3 +50,11 @@ if __name__ == '__main__':
     mu_z_prior.requires_grad_(True)
     params = list(model.parameters()) + [mu_z_prior]
     optimizer = torch.optim.Adam(params, lr=learning_rate)
+
+    loss = []
+    for i in range(nb_epoch):
+        l = train_IWAE(1)
+        loss.append(l)
+        if i % 200 == 0:
+            print(l)
+
